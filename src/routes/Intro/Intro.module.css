@@ -1,0 +1,59 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  background-color: #1b1e22;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: exit 22s ease-out;
+  background-image: url("../../assets/images/wallpaper.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container img,
+.container h3 {
+  animation: zoom 5s ease-in-out 3s infinite;
+  animation-iteration-count: 3.5;
+}
+
+.container img {
+  width: 120px;
+  transform: rotate(45deg);
+}
+
+.container h3 {
+  color: white;
+  font-size: 50px;
+}
+
+@media (min-width: 768px) {
+}
+
+@keyframes zoom {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  83% {
+    opacity: 1;
+  }
+}
+
+@keyframes exit {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0;
+  }
+}
