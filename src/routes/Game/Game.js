@@ -13,10 +13,7 @@ import HowToPlayModal from "../../components/HowToPlay/HowToPlayModal";
 import PauseModal from "../../components/Pause/PauseModal";
 import ReferenceModal from "../../components/Reference/ReferenceModal";
 import * as audioFunctions from "../../scripts/audio";
-import playingSound from "../../audios/playing.mp3";
 import completedSound from "../../audios/victory.mp3";
-import slideSound from "../../audios/slide.wav";
-import staticSound from "../../audios/static.wav";
 
 function Game() {
   const [puzzleNumbers, setPuzzleNumbers] = useState([]);
@@ -30,24 +27,12 @@ function Game() {
   const [pauseModal, setPauseModal] = useState(false);
   const [referenceModal, setReferenceModal] = useState(false);
   const [completedGameSound] = useState(new Audio(completedSound));
-  const [playingGameSound] = useState(new Audio(playingSound));
-  const slideGameSound = new Audio(slideSound);
-  const staticGameSound = new Audio(staticSound);
 
   // completed game sound
   useEffect(() => {
     if (finish) audioFunctions.playSound(completedGameSound, false, true);
     else audioFunctions.stopSound(completedGameSound);
   }, [completedGameSound, finish]);
-
-  // playing game sound
-  useEffect(() => {
-    if (startGame && !pauseModal)
-      audioFunctions.playSound(playingGameSound, true);
-    else if (startGame && pauseModal)
-      audioFunctions.pauseSound(playingGameSound);
-    else audioFunctions.stopSound(playingGameSound);
-  }, [startGame, playingGameSound, pauseModal]);
 
   // start game
   useEffect(() => {
@@ -114,7 +99,6 @@ function Game() {
     let direction = isMovable(groupedNumbers, row, col);
 
     const handleMovement = () => {
-      audioFunctions.playSound(slideGameSound);
       groupedNumbers[emptyRow][emptyCol] = number;
       groupedNumbers[row][col] = 0;
       setPuzzleNumbers(spreadNumbers(groupedNumbers));
@@ -139,7 +123,6 @@ function Game() {
         break;
 
       default:
-        audioFunctions.playSound(staticGameSound);
         break;
     }
   };
@@ -147,8 +130,6 @@ function Game() {
   const restartGameHandler = () => {
     resetGame();
     setPauseModal(false);
-    audioFunctions.stopSound(playingGameSound);
-    audioFunctions.playSound(playingGameSound, true);
     setPuzzleNumbers(shuffleNumbers([...Array(9).keys()]));
     timerFunctions.start();
   };
