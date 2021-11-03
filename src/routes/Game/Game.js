@@ -12,8 +12,6 @@ import ContinueGameModal from "../../components/ContinueGame/ContinueGameModal";
 import HowToPlayModal from "../../components/HowToPlay/HowToPlayModal";
 import PauseModal from "../../components/Pause/PauseModal";
 import ReferenceModal from "../../components/Reference/ReferenceModal";
-import * as audioFunctions from "../../scripts/audio";
-import completedSound from "../../audios/victory.mp3";
 
 function Game() {
   const [puzzleNumbers, setPuzzleNumbers] = useState([]);
@@ -26,13 +24,6 @@ function Game() {
   const [howToPlayModal, setHowToPlayModal] = useState(false);
   const [pauseModal, setPauseModal] = useState(false);
   const [referenceModal, setReferenceModal] = useState(false);
-  const [completedGameSound] = useState(new Audio(completedSound));
-
-  // completed game sound
-  useEffect(() => {
-    if (finish) audioFunctions.playSound(completedGameSound, false, true);
-    else audioFunctions.stopSound(completedGameSound);
-  }, [completedGameSound, finish]);
 
   // start game
   useEffect(() => {
