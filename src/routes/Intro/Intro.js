@@ -7,7 +7,7 @@ function Intro() {
   let history = useHistory();
   setTimeout(() => {
     history.push("/game");
-  }, 12000);
+  }, 13000);
 
   return (
     <div className={styles.container}>

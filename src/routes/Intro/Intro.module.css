@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation: exit 14.4s ease-out;
+  animation: exit 15.6s ease-out;
   background-image: url("../../assets/images/wallpaper.svg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -16,6 +16,7 @@
 .container h3 {
   animation: zoom 6s ease-in-out 1s infinite;
   animation-iteration-count: 3;
+  animation-delay: 2s;
 }
 
 .container img {
