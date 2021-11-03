@@ -15,9 +15,6 @@ import ReferenceModal from "../../components/Reference/ReferenceModal";
 import * as audioFunctions from "../../scripts/audio";
 import playingSound from "../../audios/playing.mp3";
 import completedSound from "../../audios/victory.mp3";
-import winSound from "../../audios/win.mp3";
-import pauseSound from "../../audios/pause.mp3";
-import homeSound from "../../audios/home.mp3";
 import slideSound from "../../audios/slide.wav";
 import staticSound from "../../audios/static.wav";
 
@@ -34,29 +31,8 @@ function Game() {
   const [referenceModal, setReferenceModal] = useState(false);
   const [completedGameSound] = useState(new Audio(completedSound));
   const [playingGameSound] = useState(new Audio(playingSound));
-  const [homeGameSound] = useState(new Audio(homeSound));
-  const [pauseGameSound] = useState(new Audio(pauseSound));
-  const [winGameSound] = useState(new Audio(winSound));
   const slideGameSound = new Audio(slideSound);
   const staticGameSound = new Audio(staticSound);
-
-  // win game sound
-  useEffect(() => {
-    if (continueGameModal) audioFunctions.playSound(winGameSound, true);
-    else audioFunctions.stopSound(winGameSound);
-  }, [continueGameModal, winGameSound]);
-
-  // pause game sound
-  useEffect(() => {
-    if (pauseModal) audioFunctions.playSound(pauseGameSound, true);
-    else audioFunctions.stopSound(pauseGameSound);
-  }, [pauseModal, pauseGameSound]);
-
-  // start game sound
-  useEffect(() => {
-    if (startGameModal) audioFunctions.playSound(homeGameSound, true);
-    else audioFunctions.stopSound(homeGameSound);
-  }, [startGameModal, homeGameSound]);
 
   // completed game sound
   useEffect(() => {
