@@ -12,6 +12,14 @@ import ContinueGameModal from "../../components/ContinueGame/ContinueGameModal";
 import HowToPlayModal from "../../components/HowToPlay/HowToPlayModal";
 import PauseModal from "../../components/Pause/PauseModal";
 import ReferenceModal from "../../components/Reference/ReferenceModal";
+import * as audioFunctions from "../../scripts/audio";
+import playingSound from "../../audios/playing.mp3";
+import completedSound from "../../audios/victory.mp3";
+import winSound from "../../audios/win.mp3";
+import pauseSound from "../../audios/pause.mp3";
+import homeSound from "../../audios/home.mp3";
+import slideSound from "../../audios/slide.wav";
+import staticSound from "../../audios/static.wav";
 
 function Game() {
   const [puzzleNumbers, setPuzzleNumbers] = useState([]);
@@ -24,7 +32,48 @@ function Game() {
   const [howToPlayModal, setHowToPlayModal] = useState(false);
   const [pauseModal, setPauseModal] = useState(false);
   const [referenceModal, setReferenceModal] = useState(false);
+  const [completedGameSound] = useState(new Audio(completedSound));
+  const [playingGameSound] = useState(new Audio(playingSound));
+  const [homeGameSound] = useState(new Audio(homeSound));
+  const [pauseGameSound] = useState(new Audio(pauseSound));
+  const [winGameSound] = useState(new Audio(winSound));
+  const slideGameSound = new Audio(slideSound);
+  const staticGameSound = new Audio(staticSound);
 
+  // win game sound
+  useEffect(() => {
+    if (continueGameModal) audioFunctions.playSound(winGameSound, true);
+    else audioFunctions.stopSound(winGameSound);
+  }, [continueGameModal, winGameSound]);
+
+  // pause game sound
+  useEffect(() => {
+    if (pauseModal) audioFunctions.playSound(pauseGameSound, true);
+    else audioFunctions.stopSound(pauseGameSound);
+  }, [pauseModal, pauseGameSound]);
+
+  // start game sound
+  useEffect(() => {
+    if (startGameModal) audioFunctions.playSound(homeGameSound, true);
+    else audioFunctions.stopSound(homeGameSound);
+  }, [startGameModal, homeGameSound]);
+
+  // completed game sound
+  useEffect(() => {
+    if (finish) audioFunctions.playSound(completedGameSound, false, true);
+    else audioFunctions.stopSound(completedGameSound);
+  }, [completedGameSound, finish]);
+
+  // playing game sound
+  useEffect(() => {
+    if (startGame && !pauseModal)
+      audioFunctions.playSound(playingGameSound, true);
+    else if (startGame && pauseModal)
+      audioFunctions.pauseSound(playingGameSound);
+    else audioFunctions.stopSound(playingGameSound);
+  }, [startGame, playingGameSound, pauseModal]);
+
+  // start game
   useEffect(() => {
     if (startGame) {
       setPuzzleNumbers(shuffleNumbers([...Array(9).keys()]));
@@ -33,6 +82,7 @@ function Game() {
     }
   }, [startGame]);
 
+  // finish game
   useEffect(() => {
     if (finish) {
       setStartGame(false);
@@ -44,6 +94,7 @@ function Game() {
     }
   }, [finish]);
 
+  // play again
   useEffect(() => {
     if (continueGame) {
       resetGame();
@@ -52,6 +103,7 @@ function Game() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [continueGame]);
 
+  // detect game finish
   useEffect(() => {
     if (puzzleNumbers.length > 0) {
       let groupedNumbers = groupNumbers(puzzleNumbers);
@@ -67,6 +119,7 @@ function Game() {
     }
   }, [puzzleNumbers]);
 
+  // reset game
   const resetGame = () => {
     for (let i = 1; i < puzzleNumbers.length; i++) {
       document.getElementById(i).style.cssText = "background: #FFD914";
@@ -77,6 +130,7 @@ function Game() {
     setFinish(false);
   };
 
+  // move tile
   const moveTile = (number) => {
     let groupedNumbers = groupNumbers(puzzleNumbers);
     const [emptyRow, emptyCol] = getPositionCoordinate(groupedNumbers, 0);
@@ -84,6 +138,7 @@ function Game() {
     let direction = isMovable(groupedNumbers, row, col);
 
     const handleMovement = () => {
+      audioFunctions.playSound(slideGameSound);
       groupedNumbers[emptyRow][emptyCol] = number;
       groupedNumbers[row][col] = 0;
       setPuzzleNumbers(spreadNumbers(groupedNumbers));
@@ -108,6 +163,7 @@ function Game() {
         break;
 
       default:
+        audioFunctions.playSound(staticGameSound);
         break;
     }
   };
@@ -115,6 +171,8 @@ function Game() {
   const restartGameHandler = () => {
     resetGame();
     setPauseModal(false);
+    audioFunctions.stopSound(playingGameSound);
+    audioFunctions.playSound(playingGameSound, true);
     setPuzzleNumbers(shuffleNumbers([...Array(9).keys()]));
     timerFunctions.start();
   };
