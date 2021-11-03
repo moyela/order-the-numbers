@@ -112,6 +112,13 @@ function Game() {
     }
   };
 
+  const restartGameHandler = () => {
+    resetGame();
+    setPauseModal(false);
+    setPuzzleNumbers(shuffleNumbers([...Array(9).keys()]));
+    timerFunctions.start();
+  };
+
   const startGameHandler = () => {
     setStartGame(true);
   };
@@ -165,6 +172,7 @@ function Game() {
       {pauseModal && (
         <PauseModal
           reference={referenceHandler}
+          restart={restartGameHandler}
           resume={resumeGameHandler}
           quit={startGameModalHandler}
         />

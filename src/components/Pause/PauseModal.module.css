@@ -35,7 +35,7 @@
 }
 
 .modal button {
-  background-color: #30be37;
+  background-color: #6fd3d5;
   color: black;
   border: none;
   border-radius: 5px;
@@ -52,5 +52,9 @@
 }
 
 .modal :nth-child(4) {
+  background-color: #f7d900;
+}
+
+.modal :nth-child(5) {
   background-color: tomato;
 }
