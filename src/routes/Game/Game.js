@@ -11,7 +11,7 @@ import StartGameModal from "../../components/StartGame/StartGameModal";
 import ContinueGameModal from "../../components/ContinueGame/ContinueGameModal";
 import HowToPlayModal from "../../components/HowToPlay/HowToPlayModal";
 import PauseModal from "../../components/Pause/PauseModal";
-import ReferenceModal from "../../components/Reference/ReferenceModal";
+import DemoModal from "../../components/Demo/DemoModal";
 
 function Game() {
   const [puzzleNumbers, setPuzzleNumbers] = useState([]);
@@ -23,7 +23,7 @@ function Game() {
   const [continueGame, setContinueGame] = useState(false);
   const [howToPlayModal, setHowToPlayModal] = useState(false);
   const [pauseModal, setPauseModal] = useState(false);
-  const [referenceModal, setReferenceModal] = useState(false);
+  const [demoModal, setDemoModal] = useState(false);
 
   // start game
   useEffect(() => {
@@ -155,8 +155,8 @@ function Game() {
     timerFunctions.resume();
   };
 
-  const referenceHandler = () => {
-    setReferenceModal(!referenceModal);
+  const DemoHandler = () => {
+    setDemoModal(!demoModal);
   };
 
   return (
@@ -174,10 +174,10 @@ function Game() {
           continueGame={continueGameHandler}
         />
       )}
-      {referenceModal && <ReferenceModal close={referenceHandler} />}
+      {demoModal && <DemoModal close={DemoHandler} />}
       {pauseModal && (
         <PauseModal
-          reference={referenceHandler}
+          demo={DemoHandler}
           restart={restartGameHandler}
           resume={resumeGameHandler}
           quit={startGameModalHandler}
