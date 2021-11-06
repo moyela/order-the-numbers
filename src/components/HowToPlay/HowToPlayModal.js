@@ -22,7 +22,7 @@ function HowToPlayModal({ close }) {
         </p>
         <p>
           A timer is set, and your movements are counted to keep track of your
-          progress. The more you practice, the faster and better you become 👍
+          progress. The more you practice, the faster and better you become.
         </p>
       </div>
     </div>
