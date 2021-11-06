@@ -9,19 +9,18 @@ function HowToPlayModal({ close }) {
         <img onClick={close} src={Close} alt="close" />
         <h3>How to Play</h3>
         <p>
-          This game is popularly called "Sliding Puzzle" which is played by
-          moving blocks that are adjacent to the empty cell in the puzzle box.<br />
-          In this game, all you have to do is tap on a valid movable block
-          (adjacent to the empty cell) to move the block to the desired
-          position. The objective of the game is to arrange all the blocks such
-          that the numbers attached to the blocks are in ascending order
-          (smallest to largest), positioning the empty cell at the bottom right
-          corner of the box to complete the puzzle. There's a timer and your
-          moves are being counted to keep track of your performance. The more
-          you practice, the faster you become 👍 <br />
+          This game is commonly referred to as "Sliding Puzzle" and it is played
+          by shifting blocks that are next to the puzzle box's vacant cell. All
+          you have to do in this game is tap on the blocks that appear next to
+          the vacant cell in order for those blocks to be moved into that cell.
           <br />
-          Hint: Complete each row (horizontal axis) accordingly till the very
-          last. Good luck!
+          The goal of the game is to arrange all of the blocks such that the
+          numbers linked to them are in ascending order (smallest to largest),
+          then place the empty cell in the bottom right corner of the box to
+          finish the puzzle.
+          <br />A timer is set, and your movements are counted to keep track of
+          your progress. The more you practice, the faster and better you become
+          👍
         </p>
       </div>
     </div>
