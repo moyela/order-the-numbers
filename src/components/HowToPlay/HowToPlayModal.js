@@ -10,7 +10,7 @@ function HowToPlayModal({ close }) {
         <h3>How to Play</h3>
         <p>
           This game is popularly called "Sliding Puzzle" which is played by
-          sliding blocks that are adjacent to the empty cell in the puzzle box.
+          moving blocks that are adjacent to the empty cell in the puzzle box.
           In this game, all you have to do is tap on a valid movable block
           (adjacent to the empty cell) to move the block to the desired
           position. The objective of the game is to arrange all the blocks such
