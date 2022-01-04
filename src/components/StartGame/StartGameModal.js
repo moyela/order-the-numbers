@@ -8,8 +8,8 @@ function StartGameModal({ howToPlayModal, startGame }) {
     <div className={styles.modal_container}>
       <div className={styles.modal}>
         <img src={Puzzle} alt="puzzle" />
-        <h3>Number Puzzle</h3>
-        <button onClick={howToPlayModal}>How to Play</button>
+        <h3>Order the Numbers</h3>
+        <button onClick={howToPlayModal}>Instructions</button>
         <button onClick={startGame}>
           Start Game
           <img src={Rocket} alt="rocket" />
