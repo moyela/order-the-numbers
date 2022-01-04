@@ -192,7 +192,7 @@ function Game() {
         }}
       ></div>
       <header>
-        <h3>Number Puzzle</h3>
+        <h3>Order the Numbers</h3>
         <div className="header-info">
           <p>Moves: {moves}</p>
           <p id="timer">Time: 00:00:00</p>
