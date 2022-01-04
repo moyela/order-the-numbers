@@ -13,7 +13,7 @@ function Intro() {
     <div className={styles.container}>
       <img src={Puzzle} alt="puzzle" />
       <h3>Order the Numbers</h3>
-      <p>please wait...</p>
+      <p style={{color: white; margin: 20px}}>please wait...</p>
     </div>
   );
 }
