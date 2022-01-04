@@ -12,7 +12,8 @@ function Intro() {
   return (
     <div className={styles.container}>
       <img src={Puzzle} alt="puzzle" />
-      <h3>Number Puzzle</h3>
+      <h3>Order the Numbers</h3>
+      <p>please wait...</p>
     </div>
   );
 }
